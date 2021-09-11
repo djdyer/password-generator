@@ -95,10 +95,9 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
+  var randomPassword = generatePassword();
   var passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
+  passwordText.value = randomPassword;
 }
 
 function generatePassword() {
@@ -116,37 +115,28 @@ function generatePassword() {
   var comboCharacters = [];
 
   if (requireUppercase) {
-    comboCharacters.concat(capLetters);
+    comboCharacters = comboCharacters.concat(capLetters);
   }
   if (requireLowercase) {
-    comboCharacters.concat(lowLetters);
+    comboCharacters = comboCharacters.concat(lowLetters);
   }
   if (requireNumbers) {
-    comboCharacters.concat(numbers);
+    comboCharacters = comboCharacters.concat(numbers);
   }
   if (requireSpecial) {
-    comboCharacters.concat(specCharacters);
-  }
-  var passwordLength = 0;
-  passwordLength = prompt(
-    "Choose password length. Must choose between 8 - 128 characters."
-  );
-  if (comboCharacters.length === 0) {
-    alert(
-      "Please choose your password length between 8 - 128 characters. Try again."
-    );
-    return "";
-  }
-  if (passwordLength < 8 || passwordLength > 128) {
-    alert(
-      "Please choose your password length between 8 - 128 characters. Try again."
-    );
-  } else {
-    //generate password  (Math.random ?)
-    // For loop
-    randomPassword = "jdkfjdklfdsjiofjne83097345732inr3";
+    comboCharacters = comboCharacters.concat(specCharacters);
   }
 
+  var passwordLength = 0;
+  while (passwordLength < 8 || passwordLength > 128) {
+    passwordLength = prompt(
+      "Choose password length. Must choose between 8 - 128 characters."
+    );
+  }
+  for (var i = 0; i < passwordLength; i++) {
+    randomPassword +=
+      comboCharacters[Math.floor(Math.random() * comboCharacters.length)];
+  }
   return randomPassword;
 }
 
