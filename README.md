@@ -56,3 +56,7 @@ https://github.com/djdyer/password-generator
 <br />
 https://djdyer.github.io/password-generator
 <br />
+
+## Collaborators
+
+Code generated largely in deliberation and collaboration between BCS tutor Simon Rennocks, classmate Olsen Ogouchi, and myself.

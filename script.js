@@ -91,22 +91,22 @@ var specCharacters = [
   "~",
 ];
 
-// Targets button by ID
+// Targets button tag by ID
 var generateBtn = document.querySelector("#generate");
 
 // Click event launches writePassword function, which launches generatePassword function
 generateBtn.addEventListener("click", writePassword);
 
-// Writes password to the #password input, eventually adds text to page
+// Writes password to the #password input, by replacing the placeholder attribute
 function writePassword() {
-  var randomPassword = generatePassword();
+  var password = generatePassword();
   var passwordText = document.querySelector("#password");
-  passwordText.value = randomPassword;
+  passwordText.value = password;
 }
 
 function generatePassword() {
   // Sets password and combined character array to empty
-  var randomPasswordLocal = "";
+  var randomPassword = "";
   var comboCharacters = [];
 
   // 4 confirms for user to OK or Cancel each character type, assigning boolean value to requireVars
@@ -154,10 +154,10 @@ function generatePassword() {
     );
   }
 
-  // Creates final password using passwordLength to pull number from comboCharacters array
+  // Creates final password by pulling requested character length from combined array
   for (var i = 0; i < passwordLength; i++) {
-    randomPasswordLocal +=
+    randomPassword +=
       comboCharacters[Math.floor(Math.random() * comboCharacters.length)];
   }
-  return randomPasswordLocal;
+  return randomPassword;
 }
