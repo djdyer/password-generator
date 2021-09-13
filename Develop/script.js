@@ -1,3 +1,4 @@
+// 4 arrays for each of the different character types
 var capLetters = [
   "A",
   "B",
@@ -90,10 +91,13 @@ var specCharacters = [
   "~",
 ];
 
-// Assignment Code
+// Targets button by ID
 var generateBtn = document.querySelector("#generate");
 
-// Write password to the #password input
+// Click event launches writePassword function, which launches generatePassword function
+generateBtn.addEventListener("click", writePassword);
+
+// Writes password to the #password input, eventually adds text to page
 function writePassword() {
   var randomPassword = generatePassword();
   var passwordText = document.querySelector("#password");
@@ -101,6 +105,11 @@ function writePassword() {
 }
 
 function generatePassword() {
+  // Sets password and combined character array to empty
+  var randomPasswordLocal = "";
+  var comboCharacters = [];
+
+  // 4 confirms for user to OK or Cancel each character type, assigning boolean value to requireVars
   var requireUppercase = confirm(
     "Do you want your password to contain capital letters?"
   );
@@ -111,9 +120,19 @@ function generatePassword() {
   var requireSpecial = confirm(
     "Do you want your password to contain special characters?"
   );
-  var randomPassword = "";
-  var comboCharacters = [];
 
+  // Issues alert if user declines all character types, returns to repeat function
+  if (
+    requireUppercase === false &&
+    requireLowercase === false &&
+    requireNumbers === false &&
+    requireSpecial === false
+  ) {
+    alert("You must choose at least one character type!");
+    return generatePassword();
+  }
+
+  // Concatinates character type arrays into comboCharacters array per user confirmations
   if (requireUppercase) {
     comboCharacters = comboCharacters.concat(capLetters);
   }
@@ -127,18 +146,18 @@ function generatePassword() {
     comboCharacters = comboCharacters.concat(specCharacters);
   }
 
+  // passwordLength set to 0 issues prompt, loops if conditions are not met.
   var passwordLength = 0;
   while (passwordLength < 8 || passwordLength > 128) {
     passwordLength = prompt(
       "Choose password length. Must choose between 8 - 128 characters."
     );
   }
+
+  // Creates final password using passwordLength to pull number from comboCharacters array
   for (var i = 0; i < passwordLength; i++) {
-    randomPassword +=
+    randomPasswordLocal +=
       comboCharacters[Math.floor(Math.random() * comboCharacters.length)];
   }
-  return randomPassword;
+  return randomPasswordLocal;
 }
-
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
