@@ -9,6 +9,10 @@
 <li>style.css</li>
 <li>Deployed URL</li>
 
+<br />
+<img src="./demo_screenshot.png">
+<br />
+
 ## The Ask
 
 Debug and improve exisiting application code enabling employees to generate random passwords based on selected criteria. The app will run in-browser, with a responsive interface that adapts to multiple screens.
@@ -45,3 +49,10 @@ a b c d e f g h i j k l m n o p q r s t u v w x y z
 <li>Password is displayed in alert or on page</li>
 
 <li>Console displays no errors</li>
+
+## Deployed URL
+
+https://github.com/djdyer/password-generator
+<br />
+https://djdyer.github.io/password-generator
+<br />
